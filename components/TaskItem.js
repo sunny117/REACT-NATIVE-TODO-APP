@@ -75,10 +75,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#2196F3',
         borderRadius: 10
     },
+    
     inputContainer: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        shadowColor: 'black',
+        shadowOffset: {width: 0, height: 2},
+        shadowRadius: 6,
+        shadowOpacity: 0.26,
+        elevation: 8,
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 10,
+        marginTop: "20%",
+        marginLeft: '5%',
+        marginRight: '5%',
+        marginBottom: '40%',
     },
     input: {
         width: '60%',
