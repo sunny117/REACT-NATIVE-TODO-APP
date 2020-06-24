@@ -1,13 +1,9 @@
-import { createStore, applyMiddleware } from 'redux';
-import { autoRehydrate } from 'redux-persist';
+import { createStore } from 'redux';
 
 import Reducer from './Reducer';
 
-export default function configureStore(initialState) {
+export default function configureStore() {
     return createStore(
-        Reducer,
-        initialState,
-        autoRehydrate,
-        applyMiddleware
+        Reducer
     );
 }
