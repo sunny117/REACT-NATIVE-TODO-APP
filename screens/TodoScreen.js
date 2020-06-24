@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as todoActions from '../store/Actions';
 import TaskInput from '../components/TaskInput';
+import TaskItem from '../components/TaskItem';
 
 class TodoScreen extends Component {
     render() {
         return (
-            <View style={styles.screen}>
-                <TaskInput {...this.props} />
-            </View>
+                <View style={styles.screen}>
+                    <TaskInput {...this.props} />
+                    <FlatList
+                        data={this.props.todos}
+                        renderItem={itemData => (
+                            <TaskItem
+                                {...this.props}
+                                title={itemData.item.text}
+                                id={itemData.item.id}
+                            />
+                        )}
+                    />
+                </View>
         )
     }
 }
@@ -24,13 +35,13 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        todos: state.todos,
+        todos: state,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions : bindActionCreators(todoActions,dispatch)
+        actions: bindActionCreators(todoActions, dispatch)
     };
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Button, ActionSheetIOS } from 'react-native';
+import { StyleSheet, View, TextInput, Button, Keyboard } from 'react-native';
 
 const TaskInput = props => {
     let enteredText = '';
@@ -12,6 +12,7 @@ const TaskInput = props => {
     const onAddHandler = () => {
         if (enteredText.length > 0) {
             props.actions.addTodo(enteredText);
+            Keyboard.dismiss();
         }
         textInput.clear();
     }
