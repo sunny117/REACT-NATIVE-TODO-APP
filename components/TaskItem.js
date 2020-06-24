@@ -35,9 +35,9 @@ const TaskItem = props => {
     }
 
     return (
-        <TouchableOpacity onPress={onDelete} onLongPress={onEdit}>
+        <TouchableOpacity onPress={onEdit}>
             <View style={styles.listItem}>
-                <Text>{props.title}</Text>
+                <Text style={{textAlign: 'center',color: 'white'}}>{props.title}</Text>
             </View>
             <Modal visible={isEdit} animationType="slide" >
 
@@ -53,11 +53,14 @@ const TaskItem = props => {
                     />
                     <View style={styles.buttonContainer}>
                         <View style={styles.button}>
-                            <Button title="CANCEL" color="red" onPress={offEdit} />
+                            <Button title="DELETE" color="red" onPress={onDelete} />
                         </View>
                         <View style={styles.button}>
-                            <Button title="ADD" onPress={onEditAddHandler} />
+                            <Button title="EDIT" onPress={onEditAddHandler} />
                         </View>
+                    </View>
+                    <View>
+                        <Button title="CANCEL" color="grey" onPress={offEdit} />
                     </View>
                 </View>
             </Modal>
@@ -67,11 +70,10 @@ const TaskItem = props => {
 
 const styles = StyleSheet.create({
     listItem: {
-        padding: 10,
+        padding: 5,
         marginVertical: 10,
-        backgroundColor: '#ccc',
-        borderColor: 'black',
-        borderWidth: 1
+        backgroundColor: '#2196F3',
+        borderRadius: 10
     },
     inputContainer: {
         flex: 1,
@@ -79,16 +81,18 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     input: {
-        width: '80%',
-        borderColor: 'black',
-        borderWidth: 1,
-        padding: 10,
-        marginBottom: 10
+        width: '60%',
+        borderBottomColor: 'grey',
+        borderBottomWidth: 1,
+        padding: 5,
+        marginBottom: 20,
+        textAlign: 'center'
     },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        width: '60%'
+        width: '60%',
+        marginBottom: 10
     },
     button: {
         width: '40%'

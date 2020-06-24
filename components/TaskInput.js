@@ -39,7 +39,8 @@ const TaskInput = props => {
 
 const styles = StyleSheet.create({
     inputContainer: {
-        justifyContent: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center'
     },
     input: {
@@ -52,9 +53,9 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     buttonContainer: {
-        flexDirection: 'row',
         justifyContent: 'space-around',
-        width: '60%'
+        width: '20%',
+        marginBottom: 20
     }
 
 });

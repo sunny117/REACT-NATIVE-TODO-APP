@@ -10,27 +10,39 @@ import TaskItem from '../components/TaskItem';
 class TodoScreen extends Component {
     render() {
         return (
-                <View style={styles.screen}>
-                    <TaskInput {...this.props} />
-                    <FlatList
-                        data={this.props.todos}
-                        renderItem={itemData => (
-                            <TaskItem
-                                {...this.props}
-                                title={itemData.item.text}
-                                id={itemData.item.id}
-                            />
-                        )}
-                    />
-                </View>
+            <View style={styles.screen}>
+                <TaskInput {...this.props} />
+
+                <FlatList
+                    contentContainerStyle={styles.items}
+                    style={{height:'90%'}}
+                    data={this.props.todos}
+                    renderItem={itemData => (
+                        <TaskItem
+                            {...this.props}
+                            title={itemData.item.text}
+                            id={itemData.item.id}
+                        />
+                    )}
+                />
+
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
     screen: {
-        padding: 50
+        padding: 10,
+        alignContent: 'space-between'
+    },
+    input: {
+        marginBottom: 20
+    },
+    items:{
+        width: '90%'
     }
+
 });
 
 function mapStateToProps(state) {

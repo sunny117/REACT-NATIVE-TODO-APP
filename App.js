@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Keyboard,Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 
@@ -12,7 +12,11 @@ export default function App() {
   return (
     <Provider store={store}>
       <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
+        
         <View style={styles.container}>
+          <Text style={{textAlign: 'center'}}>
+         React-Native-TODO APP
+        </Text>
           <TodoScreen />
         </View>
       </TouchableWithoutFeedback>
@@ -22,7 +26,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 50
   },
 });
