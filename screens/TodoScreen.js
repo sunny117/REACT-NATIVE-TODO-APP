@@ -14,6 +14,7 @@ class TodoScreen extends Component {
                 <TaskInput {...this.props} />
 
                 <FlatList
+                keyboardShouldPersistTaps={'handled'}
                     contentContainerStyle={styles.items}
                     style={{height:'85%'}}
                     data={this.props.todos}

@@ -14,7 +14,6 @@ const TaskItem = props => {
     const onEditAddHandler = () => {
         if (enteredText.length > 0) {
             props.actions.editTodo(props.id, enteredText);
-            Keyboard.dismiss();
             setIsEdit(false);
         }
         textInput.clear();
@@ -30,7 +29,6 @@ const TaskItem = props => {
     }
 
     const offEdit = () => {
-        Keyboard.dismiss();
         setIsEdit(false);
     }
 
@@ -39,9 +37,9 @@ const TaskItem = props => {
             <View style={styles.listItem}>
                 <Text style={{textAlign: 'center',color: 'white'}}>{props.title}</Text>
             </View>
-            <Modal visible={isEdit} animationType="slide" >
+            <Modal visible={isEdit} animationType="slide"  >
 
-                <View style={styles.inputContainer}>
+                <View style={styles.inputContainer} >
                     <TextInput
                         placeholder="course Goal"
                         autoCorrect={false}
