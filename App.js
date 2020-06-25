@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
 import { Provider } from 'react-redux';
-import { persistStore } from 'redux-persist';
 
 import configureStore from './store/configureStore';
 import TodoScreen from './screens/TodoScreen';

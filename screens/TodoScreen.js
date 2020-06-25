@@ -15,7 +15,7 @@ class TodoScreen extends Component {
 
                 <FlatList
                     contentContainerStyle={styles.items}
-                    style={{height:'90%'}}
+                    style={{height:'85%'}}
                     data={this.props.todos}
                     renderItem={itemData => (
                         <TaskItem
