@@ -1,25 +1,26 @@
 import React from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import configureStore from './store/configureStore';
+import {store, persistor} from './store/configureStore';
 import TodoScreen from './screens/TodoScreen';
-
-const store = configureStore();
 
 export default function App() {
   return (
     <Provider store={store}>
-      <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
-        <View>
-          <View style={styles.header}>
-            <Text style={styles.headerTitle}>ReactNative TODO App</Text>
+      <PersistGate persistor={persistor} loading={null}>
+        <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
+          <View>
+            <View style={styles.header}>
+              <Text style={styles.headerTitle}>ReactNative TODO App</Text>
+            </View>
+            <View style={styles.container}>
+              <TodoScreen />
+            </View>
           </View>
-          <View style={styles.container}>
-            <TodoScreen />
-          </View>
-        </View>
-      </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+      </PersistGate>
     </Provider>
   );
 }

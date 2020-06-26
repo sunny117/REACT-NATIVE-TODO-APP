@@ -12,9 +12,8 @@ class TodoScreen extends Component {
         return (
             <View style={styles.screen}>
                 <TaskInput {...this.props} />
-
                 <FlatList
-                keyboardShouldPersistTaps={'handled'}
+                    keyboardShouldPersistTaps={'handled'}
                     contentContainerStyle={styles.items}
                     style={{height:'85%'}}
                     data={this.props.todos}
@@ -47,9 +46,9 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-    return {
-        todos: state,
-    }
+        return {
+            todos: state.todo,
+        }
 }
 
 function mapDispatchToProps(dispatch) {
