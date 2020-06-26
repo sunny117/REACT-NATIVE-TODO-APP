@@ -14,7 +14,7 @@ const Reducer = (state = {}, action) => {
 
         case 'EDIT_TODO':
             return {
-                'todo': state.map(item => {
+                'todo': state.todo.map(item => {
                     if(item.id != action.id)
                         return item;
                     return Object.assign({}, item, { text: action.text });
