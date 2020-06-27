@@ -46,9 +46,13 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
+        if(typeof state.todo === 'undefined')
+            return {
+                todos: []
+            };
         return {
             todos: state.todo,
-        }
+        };
 }
 
 function mapDispatchToProps(dispatch) {

@@ -1,6 +1,10 @@
 const Reducer = (state = {}, action) => {
     switch (action.type) {
         case 'ADD_TODO':
+            if(typeof state.todo === 'undefined')
+                return {
+                    'todo': [action.listItem]
+                }
             return {
                 'todo': [action.listItem, ...state.todo]
             };
