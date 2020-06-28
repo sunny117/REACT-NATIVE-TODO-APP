@@ -15,12 +15,13 @@ class TodoScreen extends Component {
                 <FlatList
                     keyboardShouldPersistTaps={'handled'}
                     contentContainerStyle={styles.items}
-                    style={{height:'85%'}}
+                    style={{height:'83%'}}
                     data={this.props.todos}
                     renderItem={itemData => (
                         <TaskItem
                             {...this.props}
-                            title={itemData.item.text}
+                            title={itemData.item.title}
+                            desc={itemData.item.description}
                             id={itemData.item.id}
                         />
                     )}
@@ -35,9 +36,6 @@ const styles = StyleSheet.create({
     screen: {
         padding: 10,
         alignContent: 'space-between'
-    },
-    input: {
-        marginBottom: 20
     },
     items:{
         width: '90%'

@@ -21,7 +21,7 @@ const Reducer = (state = {}, action) => {
                 'todo': state.todo.map(item => {
                     if(item.id != action.id)
                         return item;
-                    return Object.assign({}, item, { text: action.text });
+                    return Object.assign({}, item, { title: action.title, description: action.description });
                 })
             };
 

@@ -1,47 +1,114 @@
-import React from 'react';
-import { StyleSheet, View, TextInput, Button, Keyboard } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, TextInput, Button, Keyboard,TouchableWithoutFeedback, Modal, Text } from 'react-native';
 
 const TaskInput = props => {
-    let enteredText = '';
-    let textInput;
+    const [addTodo, setAddTodo] = useState(false);
 
-    const textInputHandler = (text) => {
-        enteredText = text;
+    let enteredTitle = '';
+    let titleInput;
+
+    let enteredDesc = '';
+    let descInput;
+
+    const titleInputHandler = (text) => {
+        enteredTitle = text;
+    };
+
+    const descInputHandler = (text) => {
+        enteredDesc = text;
     };
 
     const onAddHandler = () => {
-        if (enteredText.length > 0) {
-            props.actions.addTodo(enteredText);
+        if (enteredTitle.length > 0) {
+            props.actions.addTodo(enteredTitle,enteredDesc);
             Keyboard.dismiss();
         }
-        textInput.clear();
+        titleInput.clear();
+        descInput.clear();
+        setAddTodo(false);
+    }
+
+    const onAddTodoHandler = () => {
+        setAddTodo(true);
+    }
+
+    const onCancel = () =>  {
+        titleInput.clear();
+        descInput.clear();
+        setAddTodo(false);
     }
 
     return (
-        <View style={styles.inputContainer}>
-            <TextInput
-                placeholder="Add Todo Item"
-                style={styles.input}
-                autoCorrect={false}
-                onChangeText={textInputHandler}
-                onSubmitEditing={onAddHandler}
-                ref={txt => textInput = txt}
-            />
-            <View style={styles.buttonContainer}>
-                <View style={styles.button}>
-                    <Button title="ADD" onPress={onAddHandler} />
-                </View>
+        <View>
+            <View style={styles.mainButtonContainer}>
+                <Button title="ADD NEW TODO" onPress={onAddTodoHandler} />
             </View>
+            <Modal visible={addTodo} animationType="slide">
+            <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
+
+                <View style={styles.inputContainer}>
+                <View style={styles.header}>
+              <Text style={styles.headerTitle}>Let's Add a new Todo</Text>
+            </View>
+                    <TextInput
+                        placeholder="Add Todo Title"
+                        style={styles.input}
+                        autoCorrect={false}
+                        onChangeText={titleInputHandler}
+                        onSubmitEditing={onAddHandler}
+                        ref={txt => titleInput = txt}
+                    />
+
+                    <TextInput
+                        placeholder="Add Todo Desc"
+                        style={styles.input}
+                        autoCorrect={false}
+                        onChangeText={descInputHandler}
+                        onSubmitEditing={onAddHandler}
+                        ref={txt => descInput = txt}
+                    />
+                    <View style={styles.buttonContainer}>
+                        <View style={styles.button}>
+                            <Button title="CANCEL" color="red" onPress={onCancel} />
+                        </View>
+                        <View style={styles.button}>
+                            <Button title="ADD" onPress={onAddHandler} />
+                        </View>
+                    </View>
+                </View>
+                </TouchableWithoutFeedback>
+            </Modal>
         </View>
+
+
+
     )
 
 }
 
 const styles = StyleSheet.create({
+    mainButtonContainer: {
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        marginBottom: 30,
+        marginRight: 35
+    },
     inputContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 6,
+        shadowOpacity: 0.26,
+        elevation: 8,
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 10,
+        marginTop: "20%",
+        marginLeft: '5%',
+        marginRight: '5%',
+        marginBottom: '40%',
     },
     input: {
         width: '60%',
@@ -53,10 +120,25 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     buttonContainer: {
+        flexDirection: 'row',
         justifyContent: 'space-around',
-        width: '20%',
-        marginBottom: 20
-    }
+        width: '60%',
+        marginTop: 10,
+    },
+    button: {
+        width: '40%'
+    },
+    header: {
+        width: "100%",
+        height: 90,
+        paddingTop: 36,
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      headerTitle: {
+        color: '#f7287b',
+        fontSize: 18
+      }
 
 });
 
