@@ -53,7 +53,7 @@ const TaskItem = props => {
                 />
             </View>
 
-            <Modal visible={isEdit} animationType="slide"  >
+            <Modal visible={isEdit} animationType="slide" onRequestClose={() => setIsEdit(false)} >
                 <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
 
 

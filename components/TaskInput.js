@@ -43,7 +43,7 @@ const TaskInput = props => {
             <View style={styles.mainButtonContainer}>
                 <Button title="ADD NEW TODO" onPress={onAddTodoHandler} />
             </View>
-            <Modal visible={addTodo} animationType="slide">
+            <Modal visible={addTodo} animationType="slide" onRequestClose={() => setAddTodo(false)}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
 
                 <View style={styles.inputContainer}>

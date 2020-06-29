@@ -28,7 +28,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    marginTop: -5
+    marginTop: 10
   },
   header: {
     width: "100%",
