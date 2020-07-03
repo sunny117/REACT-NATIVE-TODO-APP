@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Button, Keyboard,TouchableWithoutFeedback, Modal, Text } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    TextInput,
+    Button,
+    Keyboard,
+    TouchableWithoutFeedback,
+    Modal,
+    Text
+} from 'react-native';
+
 
 const TaskInput = props => {
     const [addTodo, setAddTodo] = useState(false);
@@ -10,33 +20,26 @@ const TaskInput = props => {
     let enteredDesc = '';
     let descInput;
 
-    const titleInputHandler = (text) => {
-        enteredTitle = text;
-    };
+    const titleInputHandler = (text) => enteredTitle = text;
 
-    const descInputHandler = (text) => {
-        enteredDesc = text;
-    };
+    const descInputHandler = (text) => enteredDesc = text;
+
+    const onAddTodoHandler = () => setAddTodo(true);
 
     const onAddHandler = () => {
         if (enteredTitle.length > 0) {
-            props.actions.addTodo(enteredTitle,enteredDesc);
-            Keyboard.dismiss();
+            props.actions.addTodo(enteredTitle, enteredDesc);
+            titleInput.clear();
+            descInput.clear();
+            setAddTodo(false);
         }
+    };
+
+    const onCancel = () => {
         titleInput.clear();
         descInput.clear();
         setAddTodo(false);
-    }
-
-    const onAddTodoHandler = () => {
-        setAddTodo(true);
-    }
-
-    const onCancel = () =>  {
-        titleInput.clear();
-        descInput.clear();
-        setAddTodo(false);
-    }
+    };
 
     return (
         <View>
@@ -44,46 +47,40 @@ const TaskInput = props => {
                 <Button title="ADD NEW TODO" onPress={onAddTodoHandler} />
             </View>
             <Modal visible={addTodo} animationType="slide" onRequestClose={() => setAddTodo(false)}>
-            <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
-
-                <View style={styles.inputContainer}>
-                <View style={styles.header}>
-              <Text style={styles.headerTitle}>Let's Add a new Todo</Text>
-            </View>
-                    <TextInput
-                        placeholder="Add Todo Title"
-                        style={styles.input}
-                        autoCorrect={false}
-                        onChangeText={titleInputHandler}
-                        onSubmitEditing={onAddHandler}
-                        ref={txt => titleInput = txt}
-                    />
-
-                    <TextInput
-                        placeholder="Add Todo Desc"
-                        style={styles.input}
-                        autoCorrect={false}
-                        onChangeText={descInputHandler}
-                        onSubmitEditing={onAddHandler}
-                        ref={txt => descInput = txt}
-                    />
-                    <View style={styles.buttonContainer}>
-                        <View style={styles.button}>
-                            <Button title="CANCEL" color="red" onPress={onCancel} />
+                <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
+                    <View style={styles.inputContainer}>
+                        <View style={styles.header}>
+                            <Text style={styles.headerTitle}>Let's Add a new Todo</Text>
                         </View>
-                        <View style={styles.button}>
-                            <Button title="ADD" onPress={onAddHandler} />
+                        <TextInput
+                            placeholder="Add Todo Title"
+                            style={styles.input}
+                            autoCorrect={false}
+                            onChangeText={titleInputHandler}
+                            onSubmitEditing={onAddHandler}
+                            ref={txt => titleInput = txt}
+                        />
+                        <TextInput
+                            placeholder="Add Todo Desc"
+                            style={styles.input}
+                            autoCorrect={false}
+                            onChangeText={descInputHandler}
+                            onSubmitEditing={onAddHandler}
+                            ref={txt => descInput = txt}
+                        />
+                        <View style={styles.buttonContainer}>
+                            <View style={styles.button}>
+                                <Button title="CANCEL" color="red" onPress={onCancel} />
+                            </View>
+                            <View style={styles.button}>
+                                <Button title="ADD" onPress={onAddHandler} />
+                            </View>
                         </View>
                     </View>
-                </View>
                 </TouchableWithoutFeedback>
             </Modal>
         </View>
-
-
-
-    )
-
+    );
 }
 
 const styles = StyleSheet.create({
@@ -134,12 +131,11 @@ const styles = StyleSheet.create({
         paddingTop: 36,
         alignItems: 'center',
         justifyContent: 'center'
-      },
-      headerTitle: {
+    },
+    headerTitle: {
         color: '#f7287b',
         fontSize: 18
-      }
-
+    }
 });
 
 

@@ -15,7 +15,7 @@ class TodoScreen extends Component {
                 <FlatList
                     keyboardShouldPersistTaps={'handled'}
                     contentContainerStyle={styles.items}
-                    style={{height:'83%'}}
+                    style={{ height: '83%' }}
                     data={this.props.todos}
                     renderItem={itemData => (
                         <TaskItem
@@ -26,37 +26,35 @@ class TodoScreen extends Component {
                         />
                     )}
                 />
-
             </View>
-        )
-    }
-}
+        );
+    };
+};
 
 const styles = StyleSheet.create({
     screen: {
         padding: 10,
         alignContent: 'space-between'
     },
-    items:{
+    items: {
         width: '90%'
     }
-
 });
 
 function mapStateToProps(state) {
-        if(typeof state.todo === 'undefined')
-            return {
-                todos: []
-            };
+    if (typeof state.todo === 'undefined')
         return {
-            todos: state.todo,
+            todos: []
         };
-}
+    return {
+        todos: state.todo,
+    };
+};
 
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(todoActions, dispatch)
     };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoScreen);

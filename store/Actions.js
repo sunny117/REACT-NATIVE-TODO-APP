@@ -9,14 +9,14 @@ export function addTodo(title, description){
             id: uid()
         }
     };
-}
+};
 
 export function deleteTodo(id) {
     return {
         type: 'DELETE_TODO',
         id
     };
-}
+};
 
 export function editTodo(id, title, description){
     return {
@@ -25,4 +25,4 @@ export function editTodo(id, title, description){
         title,
         description
     };
-}
+};

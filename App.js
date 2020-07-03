@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, Text } from 'reac
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import {store, persistor} from './store/configureStore';
+import { store, persistor } from './store/configureStore';
 import TodoScreen from './screens/TodoScreen';
 
 export default function App() {
@@ -23,7 +23,7 @@ export default function App() {
       </PersistGate>
     </Provider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Button, TouchableWithoutFeedback, Modal, TouchableOpacity, Keyboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TextInput,
+    Button,
+    TouchableWithoutFeedback,
+    Modal,
+    TouchableOpacity,
+    Keyboard
+} from 'react-native';
 import { ListItem } from 'react-native-elements';
 
 
@@ -13,34 +23,24 @@ const TaskItem = props => {
     let descInput;
 
 
-    const titleInputHandler = (text) => {
-        enteredTitle = text;
-    };
+    const titleInputHandler = (text) => enteredTitle = text;
 
-    const descInputHandler = (text) => {
-        enteredDesc = text;
-    };
+    const descInputHandler = (text) => enteredDesc = text;
+
+    const onEdit = () => setIsEdit(true);
+
+    const offEdit = () => setIsEdit(false);
+
+    const onDelete = () => props.actions.deleteTodo(props.id);
 
     const onEditAddHandler = () => {
         if (enteredTitle.length > 0) {
             props.actions.editTodo(props.id, enteredTitle, enteredDesc);
+            titleInput.clear();
+            descInput.clear();
             setIsEdit(false);
         }
-        titleInput.clear();
-        descInput.clear();
-    }
-
-    const onDelete = () => {
-        props.actions.deleteTodo(props.id);
-    }
-
-    const onEdit = () => {
-        setIsEdit(true);
-    }
-
-    const offEdit = () => {
-        setIsEdit(false);
-    }
+    };
 
     return (
         <TouchableOpacity onPress={onEdit}>
@@ -52,16 +52,12 @@ const TaskItem = props => {
                     leftAvatar={{ source: require('../assets/book2.png') }}
                 />
             </View>
-
             <Modal visible={isEdit} animationType="slide" onRequestClose={() => setIsEdit(false)} >
                 <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
-
-
                     <View style={styles.inputContainer} >
                         <View style={styles.header}>
                             <Text style={styles.headerTitle}>Let's Modify the Todo</Text>
                         </View>
-
                         <TextInput
                             placeholder="Add Todo Title"
                             style={styles.input}
@@ -71,7 +67,6 @@ const TaskItem = props => {
                             ref={txt => titleInput = txt}
                             defaultValue={enteredTitle}
                         />
-
                         <TextInput
                             placeholder="Add Todo Desc"
                             style={styles.input}
@@ -94,11 +89,10 @@ const TaskItem = props => {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-
             </Modal>
         </TouchableOpacity>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     listItem: {
@@ -106,7 +100,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderBottomColor: '#f7287b'
     },
-
     inputContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -122,7 +115,7 @@ const styles = StyleSheet.create({
         marginTop: "20%",
         marginLeft: '5%',
         marginRight: '5%',
-        marginBottom: '40%',
+        marginBottom: '40%'
     },
     input: {
         width: '60%',
@@ -152,6 +145,6 @@ const styles = StyleSheet.create({
         color: '#f7287b',
         fontSize: 18
     }
-})
+});
 
 export default TaskItem;
